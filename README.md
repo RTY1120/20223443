@@ -150,6 +150,146 @@ int main()
 };
 
 ```
+#### 3.1번. Person클래스의 introduce() 함수의 접근지정자가 public인 경우
+
+```csharp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 부모 클래스 (기반 클래스)
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    Person(string n, int a) : name(n), age(a) {}
+
+    void introduce() {
+        cout << "이름: " << name << ", 나이: " << age << endl;
+    }
+};
+
+// 자식 클래스 (파생 클래스)
+class Student : public Person {
+private:
+    string major;
+
+public:
+    Student(string n, int a, string m) : Person(n, a), major(m) {}
+
+    void study() {
+        cout << name << " 학생이 " << major << " 전공 공부 중입니다." << endl;
+    }
+
+    void introduce2() {
+        introduce();
+    }
+};
+
+int main() {
+    Student s("홍길동", 21, "컴퓨터공학");
+    s.introduce();          // 직접접근, 간접접근 모두 오류 발생하지 않음
+    s.introduce();
+    s.study();
+    return 0;
+}
+```
+#### 3.2번. Person클래스의 introduce() 함수의 접근지정자가 protected인 경우
+
+```csharp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 부모 클래스 (기반 클래스)
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    Person(string n, int a) : name(n), age(a) {}
+protected:
+    void introduce() {
+        cout << "이름: " << name << ", 나이: " << age << endl;
+    }
+};
+
+// 자식 클래스 (파생 클래스)
+class Student : public Person {
+private:
+    string major;
+
+public:
+    Student(string n, int a, string m) : Person(n, a), major(m) {}
+
+    void study() {
+        cout << name << " 학생이 " << major << " 전공 공부 중입니다." << endl;
+    }
+
+    void introduce2() {     // Person클래스를 상속받은 Student 클래스에서 introduce()를 호출
+        introduce();
+    }
+};
+
+int main() {
+    Student s("홍길동", 21, "컴퓨터공학");
+//  s.introduce();         // 오류발생: 주석처리
+    s.introduce2();        // introduce2(); 호출               
+    s.study();
+    return 0;
+}
+```
+#### 3.3번. Person클래스의 introduce() 함수의 접근지정자가 private인 경우
+
+```csharp
+#include <iostream>
+#include <string>
+using namespace std;
+
+// 부모 클래스 (기반 클래스)
+class Person {
+protected:
+    string name;
+    int age;
+
+public:
+    Person(string n, int a) : name(n), age(a) {}
+private:            // introduce()의 접근지정자를 private로 설정
+    void introduce() {
+        cout << "이름: " << name << ", 나이: " << age << endl;
+    }
+};
+
+// 자식 클래스 (파생 클래스)
+class Student : public Person {
+private:
+    string major;
+
+public:
+    Student(string n, int a, string m) : Person(n, a), major(m) {}
+
+    void study() {
+        cout << name << " 학생이 " << major << " 전공 공부 중입니다." << endl;
+    }
+
+    void introduce2() {
+        introduce();        // 오류발생
+    }
+};
+
+int main() {
+    Student s("홍길동", 21, "컴퓨터공학");
+    s.introduce();          // 직접접근, 간접접근 모두 오류 발생
+    s.introduce();
+    s.study();
+    return 0;
+}
+```
+
+
 
 #### 3번. 과제 외에 프로그램 작성한 것
 
