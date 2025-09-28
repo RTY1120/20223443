@@ -4,6 +4,7 @@
 
 ```csharp
 
+
 #include <iostream>
 using namespace std;
 
@@ -29,6 +30,9 @@ public:
 	{
 		return person;
 	}
+	void countPerson() {
+		cout << "사람: " << getPerson() << "명" << endl;	// 자식 클래스의 countPerson() 주석 처리 후 부모클래스에 선언
+	}
 
 	int getBaggage() {		// 화물무게 확인
 		return baggage;
@@ -44,10 +48,16 @@ public:
 	{
 		this->room = room;
 	};    // 크루즈의 방 수 설정
+
+	void getRoom() {
+		cout << "방 개수: " <<  room << "개" << endl;
+	}
+	/*
 	void countPerson()
 	{
-		cout << getPerson() << endl;	// 3. 부모 클래스 Vehicle의 탑승 인원을 확인하는 getPerson()함수 사용 가능
+		cout << "사람: " << getPerson() << "명" << endl;	// 3. 부모 클래스 Vehicle의 탑승 인원을 확인하는 getPerson()함수 사용 가능
 	}
+	*/
 };
 
 class AirPlane :public Vehicle
@@ -55,28 +65,34 @@ class AirPlane :public Vehicle
 private:
 	int seat;
 public:
-	void setSeat(int seat) 
+	void setSeat(int seat)
 	{
 		this->seat = seat;
 	}
+	/*
 	void countPerson()    // 탑승인원 확인
 	{
-		cout << getPerson() << endl;
+		cout << "사람: " << getPerson() << "명" << endl;
 	}
+	*/
 };
 
 int main(int argc, char const* argv[])
 {
 	Cruise dolphin;
-	dolphin.ride();
-	dolphin.load(10);
-	dolphin.countPerson();
+	dolphin.ride();		// 부모클래스 멤버함수 접근
+	dolphin.load(10);	// 부모클래스 멤버함수 접근
+	dolphin.countPerson();	// 자식클래스 멤버함수 호출
+	dolphin.setRoom(5);	// 방 수 설정
+	dolphin.getRoom();	// 방 수 출력
+
 
 	AirPlane cppAir;
-	cppAir.ride();
-	cppAir.load(20);
-	cppAir.countPerson();
+	cppAir.ride();		// 부모클래스의 멤버함수 접근
+	cppAir.load(20);	// 부모클래스의 멤버함수 접근
+	cppAir.countPerson();	// 자식클래스 멤버함수 호출
 }
+
 
 
 ```
