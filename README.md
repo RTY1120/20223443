@@ -1,9 +1,9 @@
 # 20223443
 ## 객체지향 프로그래밍 4주차
-### 상속
+### 4주차
 
+#### 1번
 ```csharp
-
 
 #include <iostream>
 using namespace std;
@@ -93,7 +93,63 @@ int main(int argc, char const* argv[])
 	cppAir.countPerson();	// 자식클래스 멤버함수 호출
 }
 
+```
 
+#### 2번
+
+```csharp
+#include <iostream>
+using namespace std;
+
+class Base {
+private:
+	int a = 1;		// Base 클래스에서만 접근 가능
+public:
+	int b = 2;		// 어디서나 접근가능 
+protected:
+	int c = 3;		// Base 클래스 내부와 상속 받은 자식 클래스에서 접근가능
+};
+
+class Drived1 : private Base {
+public:
+	void show() {
+//		cout << a << endl;		// 부모클래스 Base의 private 멤버 변수이기 때문에 접근 불가능
+		cout << b << endl;		// 접근 가능
+		cout << c << endl;		//접근 가능
+	}
+};
+class Drived2 : protected Base {
+public:
+	void show() {
+//		cout << a << endl;	// 접근 불가능
+		cout << b << endl;	// 접근 가능
+		cout << c << endl;	// 접근 가능
+	};
+};
+
+class Drived3 : public Base {
+public:
+	void show() {
+//		cout << a << endl;	// 접근 불가능
+		cout << b << endl;	// 접근 가능
+		cout << c << endl;	// 접근 가능
+	};
+};
+
+int main()
+{
+	Drived1 d1;
+	Drived2 d2;
+	Drived3 d3;
+	d1.show();
+	d2.show();			// cout << a << endl; 모두 주석 처리시 간접접근 오류발생하지 않음
+	d3.show();
+	d3.b = 10;		// 상속접근지정자가 public이기 때문에 직접 접근 가능
+	//	d2.b = 10;		// 상속접근지정자가 protected이기 때문에 직접접근 불가능
+	//	d1.b = 20;		// 상속접근지정자가 private이기 때문에 직접 접근 불가능
+};
+
+```
 
 ```
 
