@@ -151,6 +151,49 @@ int main()
 
 ```
 
+#### 3번. 과제 외에 프로그램 작성한 것
+
+```csharp
+
+#include <iostream>
+using namespace std;
+
+class Person {
+	string name;
+	int age;
+public:
+	Person() {};
+
+	Person(int a, string b) {
+		age = a;
+		name = b;
+	}
+	void show() {
+		cout << "이름:" << name << ", " << "나이:" << age << "살" << endl;
+	}
+};
+
+class Student : public Person {		// 부모 클래스 Person이 자식 클래스 Student에 상속
+	string major;
+public:
+	Student(int a, string b, string c) : Person(a, b) {		//초기화 리스트로 age, name 초기화
+		major = c;
+	}
+	void introduce() {
+		cout << "학과:" << major << endl;
+	}
+};
+
+int main()
+{
+	Person p1(20, "가나다");
+	p1.show();		// 출력: 이름:가나다, 나이:20
+	Student p2(25, "마바사", "게임공학");
+	p2.show();		// 출력: 이름:마바사, 나이:25, 부모클래스 Person으로부터 상속받은 show() 사용
+	p2.introduce();	// 출력: 학과:게임공학
+}
+
+
 ```
 
 
