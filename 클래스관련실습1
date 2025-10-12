@@ -1,1 +1,59 @@
+# 20223443
+## 객체지향 프로그래밍 5주차
+### 클래스관련실습1
 
+#### 1번
+```csharp
+
+#include <iostream>
+using namespace std;
+
+
+class Point {
+	double x;
+	double y;
+public:
+	double getX() {
+		return x;
+	}
+	double getY() {
+		return y;
+	}
+
+	Point() { cout << "생성자" << endl; }
+	Point(int x, int y) { this->x = x, this->y = y; }
+	~Point() { cout << "소멸자" << endl; }
+
+
+	void setX(int x) {
+		this->x = x;
+	}
+	void setY(int y) {
+		this->y = y;
+	}
+
+	void printPoint() {
+		cout << "x: " << x << ", y: " << y << endl;
+	}
+	/* 멤버 함수를 추가하시요 */
+
+};
+
+int main(int argc, char const* argv[])
+{
+	/* code */
+	Point a;
+	a.setX(10);
+	a.setY(20);
+
+	a.printPoint();
+
+	Point b(3, 7);
+	b.printPoint();
+
+	//b의 높이를 a와 똑같이 만들기
+	a.getY() = b.getY();
+
+	return 0;
+```
+}
