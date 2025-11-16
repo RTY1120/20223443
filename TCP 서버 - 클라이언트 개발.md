@@ -1,4 +1,4 @@
-## Server
+# Server
 ```csharp
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
@@ -90,7 +90,7 @@ int main() {
 }
 ```
 
-## Client
+# Client
 ```csharp
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
