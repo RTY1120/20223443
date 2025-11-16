@@ -1,7 +1,5 @@
-#Server
+## Server
 ```csharp
-// server.cpp : 간단한 TCP 파일 전송 서버
-// 빌드: cl /EHsc server.cpp ws2_32.lib
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
@@ -92,10 +90,8 @@ int main() {
 }
 ```
 
-#Client
+## Client
 ```csharp
-// client.cpp : 간단한 TCP 파일 수신 클라이언트
-// 빌드: cl /EHsc client.cpp ws2_32.lib
 
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
